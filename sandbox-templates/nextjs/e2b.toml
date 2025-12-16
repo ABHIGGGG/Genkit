@@ -1,0 +1,16 @@
+# This is a config for E2B sandbox template.
+# You can use template ID (c32y8kxyyc4b5l4estc4) or template name (abhi-nextjs-sandbox) to create a sandbox:
+
+# Python SDK
+# from e2b import Sandbox, AsyncSandbox
+# sandbox = Sandbox.create("abhi-nextjs-sandbox") # Sync sandbox
+# sandbox = await AsyncSandbox.create("abhi-nextjs-sandbox") # Async sandbox
+
+# JS SDK
+# import { Sandbox } from 'e2b'
+# const sandbox = await Sandbox.create('abhi-nextjs-sandbox')
+
+team_id = "398c21ce-00b2-47dd-8a6c-920ab93a6dcb"
+dockerfile = "e2b.Dockerfile"
+template_name = "abhi-nextjs-sandbox"
+template_id = "c32y8kxyyc4b5l4estc4"
