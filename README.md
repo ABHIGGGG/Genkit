@@ -1,39 +1,38 @@
 # Genkit – AI-Powered Site & App Generation Platform
 
 <div align="center">
-  <img src="public/logo.svg" alt="Genkit Logo" width="80" height="80">
-  <h3>Launch polished websites with Genkit</h3>
-  <p>Create apps and websites by chatting with AI</p>
+  <h3>Build production-ready websites with Genkit</h3>
+  <p>Generate complete apps and websites using natural language</p>
 </div>
 
 ## Overview
 
-Genkit is a modern AI-powered code generation platform that transforms natural language descriptions into fully functional Next.js applications. Simply describe what you want to build, and Genkit's intelligent AI agent will generate complete, production-ready code with live preview capabilities.
+Genkit is an AI-powered code generation platform that converts natural language prompts into fully functional, production-ready Next.js applications. Describe what you want to build, and Genkit’s AI agent generates the complete codebase with live preview support.
 
 ## ✨ Key Features
 
-- **AI-Powered Code Generation**: OpenAI GPT-4 powered agent that understands natural language
-- **Live Preview**: Instant preview of generated applications in secure E2B sandboxes
-- **Pre-Built Templates**: Netflix, YouTube, Airbnb, Spotify clones and more
-- **Code Explorer**: Browse and examine generated source code with syntax highlighting
-- **Project Management**: Save, organize, and iterate on your projects
-- **Authentication**: Secure user management with Clerk
-- **Usage Tracking**: Credit-based system with free and pro tiers
+* **AI-Driven Code Generation**: Natural language to production-ready code using OpenAI GPT-4
+* **Live Preview**: Instantly preview generated apps inside secure E2B sandboxes
+* **Pre-Built Templates**: Ready-to-use templates including Netflix, YouTube, Airbnb, and Spotify clones
+* **Code Explorer**: Inspect and navigate generated source code with syntax highlighting
+* **Project Management**: Save, manage, and iterate on generated projects
+* **Authentication**: Integrated user authentication via Clerk
+* **Usage Tracking**: Credit-based usage system with free and paid tiers
 
 ## 🚀 Tech Stack
 
 **Frontend**: Next.js 15, TypeScript, Tailwind CSS, Shadcn/UI, React Query
 **Backend**: tRPC, PostgreSQL, Prisma ORM, Clerk Auth
-**AI & Jobs**: OpenAI GPT-4, Inngest, E2B sandboxes
+**AI & Jobs**: OpenAI GPT-4, Inngest, E2B Sandboxes
 
 ## 📋 Prerequisites
 
-- Node.js 18+ and npm
-- PostgreSQL database
-- OpenAI API key
-- E2B API key
-- Clerk authentication setup
-- Inngest account
+* Node.js 18+ and npm
+* PostgreSQL database
+* OpenAI API key
+* E2B API key
+* Clerk authentication setup
+* Inngest account
 
 ## 🛠️ Installation
 
@@ -50,13 +49,11 @@ cd genkit
 npm install
 ```
 
-3. **Set up environment variables**
+3. **Configure environment variables**
 
 ```bash
 cp .env.example .env.local
 ```
-
-Configure the following environment variables:
 
 ```env
 # Database
@@ -66,10 +63,10 @@ DATABASE_URL="postgresql://username:password@localhost:5432/genkit"
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SECRET_KEY=your_clerk_secret_key
 
-# AI Integration
+# AI
 OPENAI_API_KEY=your_openai_api_key
 
-# E2B Sandboxes
+# E2B
 E2B_API_KEY=your_e2b_api_key
 
 # Inngest
@@ -84,7 +81,7 @@ npx prisma generate
 npx prisma migrate deploy
 ```
 
-5. **Seed the database (optional)**
+5. **(Optional) Seed the database**
 
 ```bash
 npm run db:seed
@@ -98,27 +95,27 @@ npm run db:seed
 npm run dev
 ```
 
-### Run background job processing
+### Run background jobs
 
 ```bash
 npx inngest-cli@latest dev
 ```
 
-### Development Database Commands
+### Database Utilities
 
-Apply schema changes in development:
+Apply schema changes:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Open Prisma Studio for database management:
+Open Prisma Studio:
 
 ```bash
 npx prisma studio
 ```
 
-Reset database (⚠️ This will delete all data):
+Reset database (⚠️ deletes all data):
 
 ```bash
 npx prisma migrate reset
@@ -129,55 +126,51 @@ npx prisma migrate reset
 ```
 genkit/
 ├── src/
-│   ├── app/                    # Next.js App Router pages
-│   ├── components/            # Reusable UI components
-│   ├── modules/              # Feature-based modules
-│   ├── lib/                  # Utility functions
-│   ├── hooks/                # Custom React hooks
-│   ├── inngest/              # Background job functions
-│   └── trpc/                 # tRPC router and client setup
-├── prisma/                   # Database schema and migrations
-├── public/                   # Static assets
-└── sandbox-templates/        # E2B sandbox configurations
+│   ├── app/              # Next.js App Router
+│   ├── components/       # Reusable UI components
+│   ├── modules/          # Feature modules
+│   ├── lib/              # Shared utilities
+│   ├── hooks/            # Custom hooks
+│   ├── inngest/          # Background jobs
+│   └── trpc/             # tRPC setup
+├── prisma/               # Database schema & migrations
+├── public/               # Static assets
+└── sandbox-templates/    # E2B sandbox configs
 ```
 
 ## 🎯 Usage
 
-### Creating Your First Project
+### Creating a Project
 
-1. Sign up/Sign in to your Genkit account
-2. Describe your app in the main input field
-3. Choose a template or write a custom description
-4. Submit and watch the AI generate your application
-5. Preview the live result in the embedded sandbox
-6. Explore the generated code using the file explorer
+1. Sign in to Genkit
+2. Describe your application in the input field
+3. Select a template or provide a custom prompt
+4. Generate the application
+5. Preview it in the live sandbox
+6. Explore and review the generated code
 
 ### Example Prompts
 
-- "Build a modern todo app with drag-and-drop functionality"
-- "Create a social media dashboard with user posts and analytics"
-- "Build a restaurant website with menu and online ordering"
-- "Create a fitness tracker with workout logging and progress charts"
+* “Build a modern todo app with drag-and-drop support”
+* “Create a social media dashboard with analytics”
+* “Build a restaurant website with online ordering”
+* “Create a fitness tracker with progress charts”
 
 ## 💳 Usage & Billing
 
-**Free Tier**: 2 credits per month
-**Pro Tier**: 100 credits per month with priority generation
+* **Free Tier**: 2 credits per month
+* **Pro Tier**: 100 credits per month with priority generation
 
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
-
-1. **Deploy to Vercel**
 
 ```bash
 npm run build
 vercel --prod
 ```
 
-2. **Configure environment variables** in Vercel dashboard
-3. **Set up database** connection
-4. **Configure webhooks** for Inngest
+Configure environment variables and database connections via the Vercel dashboard and set up Inngest webhooks.
 
 ### Docker
 
@@ -188,17 +181,17 @@ docker run -p 3000:3000 genkit
 
 ## 🐛 Troubleshooting
 
-**Database Connection Issues**
+**Database Issues**
 
-- Verify DATABASE_URL is correct
-- Ensure PostgreSQL is running
+* Confirm `DATABASE_URL` is correct
+* Ensure PostgreSQL is running
 
-**AI Generation Failures**
+**AI Generation Errors**
 
-- Verify OpenAI API key is valid
-- Check API usage limits
+* Validate OpenAI API key
+* Check API usage limits
 
-**Sandbox Issues**
+**Sandbox Problems**
 
-- Verify E2B API key
-- Check sandbox quotas
+* Verify E2B API key
+* Review sandbox quota limits
