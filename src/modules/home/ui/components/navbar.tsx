@@ -20,8 +20,14 @@ export const Navbar = () => {
     >
       <div className="max-w-5xl mx-auto w-full flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="Vibe" width={24} height={24} />
-          <span className="font-semibold text-lg">Vibe</span>
+          <Image
+            src="/logo.svg"
+            alt="Genkit"
+            width={24}
+            height={24}
+            className="rounded-full border bg-card"
+          />
+          <span className="font-semibold text-lg tracking-tight">Genkit</span>
         </Link>
         <SignedOut>
           <div className="flex gap-2">

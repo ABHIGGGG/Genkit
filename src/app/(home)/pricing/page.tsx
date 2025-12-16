@@ -14,10 +14,10 @@ const Page = () => {
         <div className="flex flex-col items-center">
           <Image
             src="/logo.svg"
-            alt="Vibe"
+            alt="Genkit"
             width={50}
             height={50}
-            className="hidden md:block"
+            className="hidden md:block rounded-full border bg-card"
           />
         </div>
         <h1 className="text-xl md:text-3xl font-bold text-center">Pricing</h1>

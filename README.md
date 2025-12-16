@@ -1,14 +1,14 @@
-# Vibe - AI-Powered Code Generation Platform
+# Genkit – AI-Powered Site & App Generation Platform
 
 <div align="center">
-  <img src="public/logo.svg" alt="Vibe Logo" width="80" height="80">
-  <h3>Build something with Vibe</h3>
+  <img src="public/logo.svg" alt="Genkit Logo" width="80" height="80">
+  <h3>Launch polished websites with Genkit</h3>
   <p>Create apps and websites by chatting with AI</p>
 </div>
 
 ## Overview
 
-Vibe is a modern AI-powered code generation platform that transforms natural language descriptions into fully functional Next.js applications. Simply describe what you want to build, and Vibe's intelligent AI agent will generate complete, production-ready code with live preview capabilities.
+Genkit is a modern AI-powered code generation platform that transforms natural language descriptions into fully functional Next.js applications. Simply describe what you want to build, and Genkit's intelligent AI agent will generate complete, production-ready code with live preview capabilities.
 
 ## ✨ Key Features
 
@@ -40,8 +40,8 @@ Vibe is a modern AI-powered code generation platform that transforms natural lan
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/vibe.git
-cd vibe
+git clone https://github.com/your-username/genkit.git
+cd genkit
 ```
 
 2. **Install dependencies**
@@ -60,7 +60,7 @@ Configure the following environment variables:
 
 ```env
 # Database
-DATABASE_URL="postgresql://username:password@localhost:5432/vibe"
+DATABASE_URL="postgresql://username:password@localhost:5432/genkit"
 
 # Authentication (Clerk)
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
@@ -127,7 +127,7 @@ npx prisma migrate reset
 ## 📁 Project Structure
 
 ```
-vibe/
+genkit/
 ├── src/
 │   ├── app/                    # Next.js App Router pages
 │   ├── components/            # Reusable UI components
@@ -145,7 +145,7 @@ vibe/
 
 ### Creating Your First Project
 
-1. Sign up/Sign in to your Vibe account
+1. Sign up/Sign in to your Genkit account
 2. Describe your app in the main input field
 3. Choose a template or write a custom description
 4. Submit and watch the AI generate your application
@@ -182,8 +182,8 @@ vercel --prod
 ### Docker
 
 ```bash
-docker build -t vibe .
-docker run -p 3000:3000 vibe
+docker build -t genkit .
+docker run -p 3000:3000 genkit
 ```
 
 ## 🐛 Troubleshooting

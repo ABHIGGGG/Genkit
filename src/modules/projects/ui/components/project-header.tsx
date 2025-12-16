@@ -44,8 +44,16 @@ export const ProjectHeader = ({ projectId }: Props) => {
             size="sm"
             className="focus-visible:ring-0 hover:bg-transparent hover:opacity-75 transition-opacity pl-2!"
           >
-            <Image src="/logo.svg" alt="Vibe" width={18} height={18} />
-            <span className="text-sm font-medium">{project.name}</span>
+            <Image
+              src="/logo.svg"
+              alt="Genkit"
+              width={18}
+              height={18}
+              className="rounded-full border bg-card"
+            />
+            <span className="text-sm font-medium truncate max-w-[160px]">
+              {project.name}
+            </span>
             <ChevronDownIcon />
           </Button>
         </DropdownMenuTrigger>
