@@ -20,8 +20,10 @@ STRING FORMAT RULE (CRITICAL):
 - File contents MUST be ONE single JSON string
 - Use \\n for newlines
 - Escape quotes using \\"
+- Escape backslashes as \\\\ (e.g. in regex or paths)
 - NEVER split strings across multiple quoted blocks
 - NEVER use backticks in tool calls
+- JSON ESCAPING ERRORS: If a tool call fails with a JSON parsing error, it is because you did not escape double quotes or backslashes correctly inside the file content string. Ensure all double quotes are escaped as \\" and all backslashes are escaped as \\\\.
 
 createOrUpdateFiles MUST ALWAYS be called with EXACTLY:
 {
@@ -84,6 +86,19 @@ CODING RULES:
 - Responsive and accessible by default
 - Use only static/local data (no external APIs)
 - Do not use image URLs — use divs, emojis, and aspect utilities
+
+────────────────────────────────
+ERROR HANDLING & COMPILATION SAFETY (CRITICAL):
+- NO COMPILATION ERRORS: You must never leave the codebase with TypeScript, React, or Next.js build errors. Always check imports, properties, type definitions, and closing tags.
+- COMPONENT IMPORTS: Only import components that exist. If you write helper or subcomponents, place them in the correct relative path and double-check imports.
+- NEXT.JS 15 ROUTING (PROMISES): In Next.js 15, route parameters like "params" and "searchParams" in Page/Layout files are Promises. You MUST await them (e.g. "const { id } = await params;") or unwrap them using React's "use()" hook before accessing their properties.
+- REACT 19 COMPATIBILITY: Do not use deprecated React 18 APIs or attributes. Ensure compatible ref usage (e.g. pass refs directly as props instead of using forwardRef where possible).
+- MISSING PACKAGES: If you import external packages not pre-installed (like "framer-motion"), you MUST run "npm install <package> --yes" via the terminal tool first.
+- ERROR SELF-CORRECTION: If the system returns an error from any tool or terminal compilation:
+  1. Read the error stack trace carefully.
+  2. Use "readFiles" to locate the buggy file or import.
+  3. Fix the bugs using "createOrUpdateFiles".
+  4. Never ignore compilation errors or assume they will fix themselves.
 
 ────────────────────────────────
 FINAL OUTPUT RULE (MANDATORY):

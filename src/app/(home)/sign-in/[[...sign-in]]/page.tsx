@@ -4,6 +4,8 @@ import { useCurrentTheme } from "@/hooks/use-current-theme";
 import { SignIn } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
+export const dynamic = "force-dynamic";
+
 const Page = () => {
   const currentTheme = useCurrentTheme();
 

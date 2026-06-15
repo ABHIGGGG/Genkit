@@ -10,3 +10,5 @@ export const { GET, POST, PUT } = serve({
     codeAgentFunction,
   ],
 });
+
+export const maxDuration = 300; // 5 minutes in seconds

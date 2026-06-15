@@ -3,7 +3,6 @@ import { prisma } from "@/lib/db";
 import { consumeCredits } from "@/lib/usage";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
-import { exit } from "node:process";
 import { z } from "zod";
 
 export const messagesRouter = createTRPCRouter({
@@ -48,58 +47,64 @@ export const messagesRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      // Check if the project actually belongs to the logged-in user
-      const existingProject = await prisma.project.findUnique({
-        where: {
-          id: input.projectId,
-          userId: ctx.auth.userId,
-        },
-      });
-
-      if (!existingProject) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Project not found",
-        });
-      }
-
-      // Deduct usage credits before creating the message
       try {
-        await consumeCredits();
-      } catch (error) {
-        if (error instanceof Error) {
+        // Check if the project actually belongs to the logged-in user
+        const existingProject = await prisma.project.findUnique({
+          where: {
+            id: input.projectId,
+            userId: ctx.auth.userId,
+          },
+        });
+
+        if (!existingProject) {
           throw new TRPCError({
-            code: "BAD_REQUEST",
-            message: "Something went wrong",
-          });
-        } else {
-          // No credits left
-          throw new TRPCError({
-            code: "TOO_MANY_REQUESTS",
-            message: "You have run out of credits",
+            code: "NOT_FOUND",
+            message: "Project not found",
           });
         }
+
+        // Deduct usage credits before creating the message
+        try {
+          await consumeCredits();
+        } catch (error) {
+          if (error instanceof Error) {
+            throw new TRPCError({
+              code: "BAD_REQUEST",
+              message: "Something went wrong",
+            });
+          } else {
+            // No credits left
+            throw new TRPCError({
+              code: "TOO_MANY_REQUESTS",
+              message: "You have run out of credits",
+            });
+          }
+        }
+
+        // Save the user message to DB
+        const createdMessage = await prisma.message.create({
+          data: {
+            projectId: existingProject.id,
+            content: input.value,
+            role: "USER",
+            type: "RESULT",
+          },
+        });
+
+        // Send event to Inngest → triggers background code generation
+        //this insrtruction is sent to inngest to run code agent
+        await inngest.send({
+          name: "code-agent/run",
+          data: {
+            value: input.value,
+            projectId: input.projectId,
+          },
+        });
+
+        return createdMessage;
+      } catch (error) {
+        console.error("🔴 Error in messagesRouter.create:", error);
+        throw error;
       }
-
-      // Save the user message to DB
-      const createdMessage = await prisma.message.create({
-        data: {
-          projectId: existingProject.id,
-          content: input.value,
-          role: "USER",
-          type: "RESULT",
-        },
-      });
-
-      // Send event to Inngest → triggers background code generation
-      await inngest.send({
-        name: "code-agent/run",
-        data: {
-          value: input.value,
-          projectId: input.projectId,
-        },
-      });
-
-      return createdMessage;
     }),
 });

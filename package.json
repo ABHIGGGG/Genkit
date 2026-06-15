@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,7 +16,8 @@
     "@clerk/themes": "^2.2.55",
     "@e2b/code-interpreter": "^1.5.1",
     "@hookform/resolvers": "^5.1.1",
-    "@inngest/agent-kit": "^0.8.3",
+    "@inngest/agent-kit": "^0.13.2",
+    "@next/swc-darwin-arm64": "^16.2.9",
     "@prisma/client": "^6.10.1",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
@@ -54,7 +55,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
-    "inngest": "^3.39.2",
+    "inngest": "^3.54.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.523.0",
     "next": "15.3.4",
@@ -74,7 +75,7 @@
     "superjson": "^2.2.2",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
-    "zod": "^3.25.67"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@e2b/cli": "^2.4.2",

@@ -1,3 +1,4 @@
+//it is a custom hook to determine if the device is mobile based on viewport width
 import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768

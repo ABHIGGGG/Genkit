@@ -7,6 +7,7 @@ import { TRPCError } from "@trpc/server";
 import { consumeCredits } from "@/lib/usage";
 
 export const projectsRouter = createTRPCRouter({
+  // Fetch a single project by ID
   getOne: protectedProcedure
     .input(z.object({ id: z.string().min(1, { message: "Id is required" }) }))
     .query(async ({ input, ctx }) => {
@@ -25,6 +26,7 @@ export const projectsRouter = createTRPCRouter({
       }
       return existingProject;
     }),
+  // Fetch all projects for the logged-in user
   getMany: protectedProcedure.query(async ({ ctx }) => {
     const projects = await prisma.project.findMany({
       where: {
@@ -36,6 +38,7 @@ export const projectsRouter = createTRPCRouter({
     });
     return projects;
   }),
+  // Create a new project
   create: protectedProcedure
     .input(
       z.object({
@@ -78,7 +81,8 @@ export const projectsRouter = createTRPCRouter({
           },
         },
       });
-
+     
+      // Send event to Inngest → triggers background code generation
       await inngest.send({
         name: "code-agent/run", // needs ot match in functions.ts!
         data: {

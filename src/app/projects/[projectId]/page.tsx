@@ -13,8 +13,9 @@ const Page = async ({ params }: Props) => {
   const { projectId } = await params;
 
   const queryClient = getQueryClient();
+
+  // Prefetch necessary data for the project page
   void queryClient.prefetchQuery(
-    // needs to match useSuspenseQuery in the ProjectView!
     trpc.messages.getMany.queryOptions({
       projectId,
     }),
